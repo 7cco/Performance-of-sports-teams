@@ -44,7 +44,6 @@ public class DatabaseManager {
     }
 
     public void insertData(List<Player> players) throws SQLException {
-        // Get unique teams/positions
         Set<String> teams = new HashSet<>();
         Set<String> positions = new HashSet<>();
         for (Player p : players) {
