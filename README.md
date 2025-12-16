@@ -55,7 +55,7 @@ SELECT p.name, p.height_in, p.weight_lb, p.age
 ![Graph.jpg](Graph.jpg)
 
 ### Команда(CWS) с самым высоким средним ростом:
-![img.png](img.png)
+![img_2.png](img_2.png)
 
 ### Команда по критериям (рост 74–78, вес 190–210, max возраст):
 ![img_1.png](img_1.png)
