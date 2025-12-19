@@ -35,6 +35,8 @@ public class DatabaseManager {
                     height_in INTEGER NOT NULL,
                     weight_lb INTEGER NOT NULL,
                     age REAL NOT NULL,
+                    -- Добавляем уникальный составной ключ:
+                    UNIQUE(name, team_id, height_in, weight_lb, age),
                     FOREIGN KEY (team_id) REFERENCES teams(team_id),
                     FOREIGN KEY (position_id) REFERENCES positions(position_id)
                 );
@@ -44,6 +46,7 @@ public class DatabaseManager {
     }
 
     public void insertData(List<Player> players) throws SQLException {
+        // Get unique teams/positions
         Set<String> teams = new HashSet<>();
         Set<String> positions = new HashSet<>();
         for (Player p : players) {
@@ -55,7 +58,7 @@ public class DatabaseManager {
         Map<String, Integer> posIds = insertAndGetIds("positions", "name", positions);
 
         String sql = """
-            INSERT INTO players (name, team_id, position_id, height_in, weight_lb, age)
+            INSERT OR IGNORE INTO players (name, team_id, position_id, height_in, weight_lb, age)
             VALUES (?, ?, ?, ?, ?, ?)
             """;
 
